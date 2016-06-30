@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Dashboard | NGO Go Digital</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'style' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand">
+            <a class="navbar-brand" href="index.html">
+            <%= image_tag("logo.png", class: "logo") %></a>
+          </li>
+          <li class="sidebar-active">
+            <%= link_to( icon("home", "Beranda", class: "list"), dashboard_path) %>
+          </li>
+          <li>
+            <%= link_to( icon("pencil-square-o", "Pendaftaran", class: "list"), dashboard_register_path) %>
+          </li>
+          <li>
+            <%= link_to( icon("file-text-o", "Unggah Berkas", class: "list"), dashboard_upload_path) %>
+          </li>
+          <li>
+            <%= link_to( icon("star-o", "Status", class: "list"), dashboard_status_path) %>
+          </li>
+        </ul>
+      </div>
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <a href="#menu-toggle" id="menu-toggle">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle top-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span id="username">
+                    <%= current_user.email %>
+                  </span>
+                  <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="container-fluid">
+          <% if !notice.nil? %>
+            <div class="alert alert-success" role="alert"><%= notice %></div>
+          <% end %>
+
+          <% if !alert.nil? %>
+            <div class="alert alert-danger" role="alert"><%= alert %></div>
+          <% end %>
+
+          <div class="main-container">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Menu Toggle Script -->
+    <script>
+      $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+      });
+    </script>
+
+  </body>
+
+</html>

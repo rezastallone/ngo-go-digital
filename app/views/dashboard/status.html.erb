@@ -1,0 +1,71 @@
+<h1>Status</h1>
+<div class="row text-center">
+  <div class="col-md-4">
+    <div class="status-box <%= @order.any_empty? ? " " : " success" %>">
+      <li class="fa fa-check fa-5x" aria-hidden="true"></li>
+    </div>
+    <h4>Pendaftaran &amp; Persyaratan</h4>
+    <div class="form-group status-group">
+      <h4>Akun IDCH</h4>
+      Username
+      <input type="text" class="form-control status-form" value=" <%= @order.product.cpanel_username %> " disabled>
+      Password
+      <input type="text" class="form-control status-form" value=" <%= @order.product.cpanel_password %> " disabled>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="status-box <%= @order.content.file_path? ? " success" : " " %>">
+      <li class="fa fa-check fa-5x" aria-hidden="true"></li>
+    </div>
+    <h4>Unggah Berkas</h4>
+    <div class="form-group status-group">
+      <h4>Akun Wordpress</h4>
+      Username
+      <input type="text" class="form-control status-form" value=" <%= @order.product.wordpress_username %> " disabled>
+      Password
+      <input type="text" class="form-control status-form" value=" <%= @order.product.wordpress_password %> " disabled>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="status-box">
+      <li class="fa fa-check fa-5x" aria-hidden="true"></li>
+    </div>
+    <h4>Website Ready</h4>
+    <div class="form-group status-group">
+      <h4>Akun G4NP</h4>
+      Email
+      <input type="text" class="form-control status-form" value=" <%= @order.product.g4np_email %> " disabled>
+      Password
+      <input type="text" class="form-control status-form" value=" <%= @order.product.g4np_password %> " disabled>
+    </div>
+  </div>
+</div>
+
+<h1>Comments</h1>
+
+<div class="row">
+  <div class="col-md-12 message">
+    <% @order.message.each do |message| %>
+      <div class="message-group">
+        <div class="title <%= message.user.blank? ? "" : "mine" %>">
+          <%= message.user.blank? ? "Operator" : "Me" %>
+        </div>
+        <div class="content <%= message.user.blank? ? "" : "mine" %> ">
+          <%= message.content %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-12 message-form">
+    <%= form_for([@order, @order.message.build]) do |f| %>
+      <div class="form-group">
+        <%= f.label :new_comment %><br>
+        <%= f.text_area :content, class: "form-control" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Comment", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>
