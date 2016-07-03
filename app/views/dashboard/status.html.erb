@@ -8,22 +8,22 @@
     <div class="form-group status-group">
       <h4>Akun IDCH</h4>
       Username
-      <input type="text" class="form-control status-form" value=" <%= @order.product.cpanel_username %> " disabled>
+      <input type="text" class="form-control status-form" value=" <%= @product.cpanel_username %> " disabled>
       Password
-      <input type="text" class="form-control status-form" value=" <%= @order.product.cpanel_password %> " disabled>
+      <input type="text" class="form-control status-form" value=" <%= @product.cpanel_password %> " disabled>
     </div>
   </div>
   <div class="col-md-4">
-    <div class="status-box <%= @order.content.file_path? ? " success" : " " %>">
+    <div class="status-box <%= @content.file_path.blank? ? " " : " success" %>">
       <li class="fa fa-check fa-5x" aria-hidden="true"></li>
     </div>
     <h4>Unggah Berkas</h4>
     <div class="form-group status-group">
       <h4>Akun Wordpress</h4>
       Username
-      <input type="text" class="form-control status-form" value=" <%= @order.product.wordpress_username %> " disabled>
+      <input type="text" class="form-control status-form" value=" <%= @product.wordpress_username %> " disabled>
       Password
-      <input type="text" class="form-control status-form" value=" <%= @order.product.wordpress_password %> " disabled>
+      <input type="text" class="form-control status-form" value=" <%= @product.wordpress_password %> " disabled>
     </div>
   </div>
   <div class="col-md-4">
@@ -34,9 +34,9 @@
     <div class="form-group status-group">
       <h4>Akun G4NP</h4>
       Email
-      <input type="text" class="form-control status-form" value=" <%= @order.product.g4np_email %> " disabled>
+      <input type="text" class="form-control status-form" value=" <%= @product.g4np_email %> " disabled>
       Password
-      <input type="text" class="form-control status-form" value=" <%= @order.product.g4np_password %> " disabled>
+      <input type="text" class="form-control status-form" value=" <%= @product.g4np_password %> " disabled>
     </div>
   </div>
 </div>

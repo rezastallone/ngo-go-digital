@@ -1,6 +1,7 @@
 <h1>My Order</h1>
 
 <%= form_for(@order, html: {class: "form-horizontal"}) do |f| %>
+
     <% if @order.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -18,7 +19,7 @@
       <%= f.text_field :name, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :phone %><br>
+      <%= f.label "Nomor Telepon" %><br>
       <%= f.text_field :phone, class: "form-control" %>
     </div>
     <div class="form-group">
@@ -26,18 +27,35 @@
       <%= f.text_field :email, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :organization_name %><br>
+      <%= f.label "Nama Organisasi" %><br>
       <%= f.text_field :organization_name, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :organization_desc %><br>
+      <%= f.label "Deskripsi Organisasi" %><br>
       <%= f.text_area :organization_desc, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :web_url %><br>
+      <%= f.label "Alamat website yang akan dibuatkan" %><br>
       <%= f.text_field :web_url, class: "form-control" %>
     </div>
+
+    <div class="form-group">
+      <%= f.label "Berkas Persyaratan" %><br>
+      <%= f.file_field :requirement_file_path %>
+      <%= f.object.requirement_file_path? ? link_to(f.object.requirement_file_path, f.object.requirement_file_path.url) : content_tag(:span, "Upload berkas persyaratan") %>
+      <p>
+         Berkas merupakan syarat wajib, adapun berkas yang dibutuhkan :
+         <br>
+         1) Kartu/Surat Identitas Penanggung Jawab yang masih berlaku (contoh: KTP/SIM/Passport).
+         <br>
+         2) Akta Notaris dan SK kemenkuham atau NPWP Organisasi, Dokumen tersebut juga digunakan sebagai syarat pendaftaran domain .or.id.
+         <br>
+        Berkas di SCAN, dan disatukan dalam satu File ZIP/RAR.
+       </p>
+    </div>
+
     <div class="form-group btn-position">
       <%= f.submit "Save", class: "btn btn-success" %>
     </div>
+
 <% end %>
